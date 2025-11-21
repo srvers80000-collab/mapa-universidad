@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Mapa UNCSM - Interactivo</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
+
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+    <div id="intro-overlay" class="intro-overlay">
+        <div class="intro-card">
+            <h1>Bienvenido</h1>
+            <h2>Universidad Casimiro Sotelo Montenegro</h2>
+            <p class="subtitle">Explora el campus — mapa interactivo</p>
+            <div class="intro-actions">
+                <button id="skipIntro">Saltar</button>
+                <button id="startIntro">Iniciar Tour</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu">
+        <h2>UNCSM — Mapa Interactivo</h2>
+
+        <div class="control">
+            <label for="search">🔎 Buscar:</label>
+            <input id="search" type="text" placeholder="Escribe Biblioteca, Gimnasio..." autocomplete="off"/>
+            <div id="suggestions" class="suggestions"></div>
+        </div>
+
+        <div class="control">
+            <label>📍 Puntos rápidos:</label>
+            <div class="btn-grid">
+                <button onclick="irA('biblioteca')">📚 Biblioteca</button>
+                <button onclick="irA('neysis')">🏬 Neysis Ríos</button>
+                <button onclick="irA('gimnasio')">🏋️ Gimnasio</button>
+                <button onclick="irA('museo')">🏛 Museo</button>
+                <button onclick="irA('aula_magna')">🎓 Aula Magna</button>
+                <button onclick="irA('foodpark')">🍔 FoodPark</button>
+                <button onclick="irA('facultad_cyt')">🔬 Facultad</button>
+            </div>
+        </div>
+
+        <div class="control">
+            <label>🛣 Ruta caminando:</label>
+            <select id="ruta-from"></select>
+            <select id="ruta-to"></select>
+            <button id="hacerRuta">Calcular ruta</button>
+            <button id="borraRuta">Borrar ruta</button>
+        </div>
+
+        <div class="control">
+            <label>🎛 Modo / Tour / Visual</label>
+            <div class="row">
+                <button id="toggleTheme">Modo Oscuro</button>
+                <button id="startTour">Iniciar Tour</button>
+                <button id="stopTour" disabled>Detener Tour</button>
+            </div>
+            <div class="row" style="margin-top:8px;">
+                <button id="toggle3D">Activar 3D</button>
+                <button id="toggleDebug">Debug: OFF</button>
+            </div>
+        </div>
+
+        <small class="hint">El mapa está visualmente limitado al campus.</small>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="panel-instrucciones"></div>
+
+    <div id="debug-panel" class="debug-panel" aria-hidden="true">
+        <h4>Modo Debug</h4>
+        <div id="debug-content">
+            <div>Centro: <span id="dbg-center">—</span></div>
+            <div>Zoom: <span id="dbg-zoom">—</span></div>
+            <div>Último click: <span id="dbg-click">—</span></div>
+            <div>Último marcador creado: <span id="dbg-marker">—</span></div>
+        </div>
+        <button id="dbg-clear">Limpiar datos</button>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
